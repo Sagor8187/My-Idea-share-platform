@@ -9,9 +9,9 @@ export default function Footer() {
 
     
         <div>
-          <h2 className="text-xl font-bold flex items-center gap-2">
-            💡 IdeaVault
-          </h2>
+          <Link href="/" className="btn btn-ghost text-2xl font-bold">
+            Next<span className="text-purple-700 text-xl">Idea</span>
+          </Link>
           <p className="mt-4 text-sm text-default-500 leading-6">
             A platform to share, validate, and refine innovative startup ideas
             with the community.
@@ -54,24 +54,24 @@ export default function Footer() {
               </Button>
             ))}
           </div>
-          <p className="text-sm text-default-500">contact@ideavault.com</p>
+          <p className="text-sm text-default-500">sdsagor8187@gmail.com</p>
         </div>
       </div>
 
    
       <Separator className="mt-10 mb-6" />
 
-      <div className="px-6 flex flex-col md:flex-row justify-between text-sm text-default-500">
+      <div className="flex justify-center  ">
         <p>© 2026 IdeaVault. All rights reserved.</p>
-        <p>Developed by <span className="font-semibold text-foreground">Abu</span></p>
+        <p>Developed by <span className="font-semibold text-foreground">Sagor</span></p>
       </div>
 
       {/* Floating Chat Button */}
       <Button
         isIconOnly
-        color="primary"
+        
         radius="full"
-        className="fixed bottom-6 right-6 shadow-lg"
+        className="fixed bottom-6 right-6 shadow-lg bg-purple-700"
       >
         <FaComments size={20} />
       </Button>
