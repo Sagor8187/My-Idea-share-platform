@@ -1,5 +1,6 @@
 "use client";
 
+import { authClient } from "@/lib/auth-client";
 import {
   Button,
   Description,
@@ -9,21 +10,28 @@ import {
   Label,
   TextField,
 } from "@heroui/react";
+
 import Link from "next/link";
 
 export default function SignupPage() {
-  const onSubmit = (e) => {
+  const onSubmit = async(e) => {
     e.preventDefault();
     const formData = new FormData(e.currentTarget);
 
-    const data = {
-      name: formData.get("name"),
-      email: formData.get("email"),
-      image: formData.get("image"),
-      password: formData.get("password"),
-    };
+   const mydata = Object.fromEntries(formData.entries())
 
-    console.log(data);
+ try {
+      const { data, error } = await authClient.signUp.email({
+    name: mydata.name, 
+    email: mydata.email,
+    password: mydata.password, // required
+    image: mydata.image,
+    callbackURL: "http://localhost:3000/",
+});
+ } catch (err) {
+    console.error("error ",err)
+ }
+
   };
 
   return (

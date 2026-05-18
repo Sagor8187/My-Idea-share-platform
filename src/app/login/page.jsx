@@ -1,6 +1,7 @@
 "use client";
 
 
+import { authClient } from "@/lib/auth-client";
 import {
   Button,
   Description,
@@ -13,9 +14,20 @@ import {
 import Link from "next/link";
 
 export default function LoginPage() {
-  const onSubmit = (e) => {
+  const onSubmit = async(e) => {
     e.preventDefault();
     const formData = new FormData(e.currentTarget);
+    const mydata = Object.fromEntries(formData.entries())
+    try {
+        const { data, error } = await authClient.signIn.email({
+    email: mydata.email, // required
+    password: mydata.password, // required
+    rememberMe: true,
+    callbackURL: "http://localhost:3000/",
+});
+    } catch (err) {
+        console.error("error ",err)
+    }
   };
 
   return (
