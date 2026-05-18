@@ -1,10 +1,11 @@
 import React from 'react'
+import { ThemeSwitch } from './ThemeSwitch'
 
 export default function Navber() {
   return (
     <div>
         
-      <div className="navbar bg-base-100 shadow-sm">
+      <div className="navbar shadow-sm">
   <div className="navbar-start">
     <div className="dropdown">
       <div tabIndex={0} role="button" className="btn btn-ghost lg:hidden">
@@ -27,7 +28,8 @@ export default function Navber() {
      
     </ul>
   </div>
-  <div className="navbar-end">
+  <div className="navbar-end flex gap-5">
+    <ThemeSwitch></ThemeSwitch>
       <div className="dropdown dropdown-end">
       <div tabIndex={0} role="button" className="btn btn-ghost btn-circle avatar">
         <div className="w-10 rounded-full">
