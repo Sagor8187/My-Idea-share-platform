@@ -1,5 +1,6 @@
-import React from 'react'
+"use"
 import { ThemeSwitch } from './ThemeSwitch'
+import Link from 'next/link'
 
 export default function Navber() {
   return (
@@ -19,12 +20,15 @@ export default function Navber() {
       <li><a>Item 2</a></li>
       </ul>
     </div>
-    <a className="btn btn-ghost text-xl">daisyUI</a>
+    <a className="btn btn-ghost text-2xl font-bold">Next<span className='text-purple-700 text-xl'>Idea</span></a>
   </div>
   <div className="navbar-center hidden lg:flex">
-    <ul className="menu menu-horizontal px-1">
-      <li><a>Item 1</a></li>
-      <li><a>Item 2</a></li>
+    <ul className="menu menu-horizontal px-1 font-semibold">
+      <li><Link href="/">Home</Link></li>
+      <li><Link href="/idea">Ideas</Link></li>
+      <li><Link href="/add-idea">Add Idea</Link></li>
+      <li><Link href="/my-idea">My Ideas</Link></li>
+      <li><Link href="/my-interactions">My Interactions</Link></li>
      
     </ul>
   </div>

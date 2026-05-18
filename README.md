@@ -2,6 +2,9 @@ This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-
 
 ## Getting Started
 
+prompt dark mood
+lastest hero ui er doc wise amak [component name] banay deo
+
 First, run the development server:
 
 ```bash
