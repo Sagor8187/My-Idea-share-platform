@@ -43,7 +43,7 @@ export default function Carousel() {
   };
 
   return (
-    <div className="relative overflow-hidden py-5 w-full mx-auto">
+    <div className="mt-15 relative overflow-hidden py-5 w-full mx-auto">
       {/* Carousel */}
       <div className="overflow-hidden rounded-xl" ref={emblaRef}>
         <div className="flex">

@@ -7,7 +7,7 @@ export default function Navber() {
   const pathname = usePathname();
   console.log(pathname);
   return (
-    <div>
+    <div  className="fixed top-0 left-0 w-full z-50 bg-background/70 backdrop-blur-md shadow border-divider">
       <div className="navbar shadow-sm">
         <div className="navbar-start">
           <div className="dropdown">
@@ -165,7 +165,7 @@ export default function Navber() {
         <div className="navbar-end flex gap-5">
           <ThemeSwitch></ThemeSwitch>
           <div className="flex justify-center gap-1">
-<Link href="/login" className="btn btn-outline btn-primary">Login</Link>
+<Link href="/login" className="btn  w">Login</Link>
           <Link className="btn btn-outline btn-primary" href="/signup">Signup</Link>
           </div>
           
