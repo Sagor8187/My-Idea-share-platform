@@ -3,6 +3,7 @@
 import useEmblaCarousel from "embla-carousel-react";
 import Autoplay from "embla-carousel-autoplay";
 import { GrNext, GrPrevious } from "react-icons/gr";
+import Link from "next/link";
 
 export default function Carousel() {
   const [emblaRef, emblaApi] = useEmblaCarousel(
@@ -10,29 +11,46 @@ export default function Carousel() {
     [Autoplay({ delay: 3000 })]
   );
 
-  const slides = [
-    {
-      image:
-        "https://images.unsplash.com/photo-1506744038136-46273834b3fb",
-      title: "Explore Nature",
-      subtitle: "Find peace in the mountains",
-      buttonText: "Explore Now",
-    },
-    {
-      image:
-        "https://images.unsplash.com/photo-1493246507139-91e8fad9978e",
-      title: "City Life",
-      subtitle: "Feel the energy of the city",
-      buttonText: "Add your idea",
-    },
-    {
-      image:
-        "https://images.unsplash.com/photo-1519125323398-675f0ddb6308",
-      title: "Adventure",
-      subtitle: "Start your journey today",
-      buttonText: "Get Started",
-    },
-  ];
+ const slides = [
+  {
+    image:
+      "https://images.unsplash.com/photo-1506744038136-46273834b3fb",
+
+    title: "Turn Ideas Into Reality",
+
+    subtitle:
+      "Share innovative ideas and inspire creators around the world.",
+
+    buttonText: "Explore Ideas",
+    link:"/idea"
+  },
+
+  {
+    image:
+      "https://images.unsplash.com/photo-1493246507139-91e8fad9978e",
+
+    title: "Build, Share & Collaborate",
+
+    subtitle:
+      "Connect with creative minds and grow your next big project.",
+
+    buttonText: "Add Your Idea",
+    link:"/add-idea"
+  },
+
+  {
+    image:
+      "https://images.unsplash.com/photo-1519125323398-675f0ddb6308",
+
+    title: "Innovation Starts Here",
+
+    subtitle:
+      "Discover unique concepts, solve problems, and shape the future.",
+
+    buttonText: "Get Started",
+    link:"/"
+  },
+];
 
   const scrollPrev = () => {
     if (emblaApi) emblaApi.scrollPrev();
@@ -61,7 +79,7 @@ export default function Carousel() {
                 <p className="mt-2 text-lg">{slide.subtitle}</p>
 
                 <button className="mt-4 px-6 py-2 bg-white text-black rounded-full hover:bg-gray-200 transition">
-                  {slide.buttonText}
+                  <Link href={slide.link}>{slide.buttonText}</Link>
                 </button>
               </div>
             </div>

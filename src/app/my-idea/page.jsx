@@ -1,3 +1,5 @@
+import IdeaDelete from "@/component/IdeaDelete";
+import IdeaUpdate from "@/component/IdeaUpdate";
 import { auth } from "@/lib/auth";
 import { headers } from "next/headers";
 import Link from "next/link";
@@ -70,7 +72,10 @@ export default async function MyIdeaPage() {
                       </span>
                     </div>
                   </div>
-
+                      <div className="flex gap-2">
+                        <IdeaDelete item={item}></IdeaDelete>
+                        <IdeaUpdate item={item}></IdeaUpdate>
+                      </div>
                   <div className="mt-2">
                     <Link href={`/idea/${item._id}`}>
                       <button className="w-full py-2.5 px-4 rounded-medium bg-primary text-primary-foreground font-medium text-sm transition-all duration-200 hover:opacity-90 active:scale-[0.98] shadow-sm">
