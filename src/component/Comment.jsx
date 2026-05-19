@@ -6,7 +6,7 @@ import { IoMdSend } from "react-icons/io";
 import { authClient } from "@/lib/auth-client";
 import CommentList from "./CommentList";
 
-export default function Comment() {
+export default function Comment({id}) {
   const { data: session } = authClient.useSession();
 
   const submitpost = async (e) => {
@@ -15,6 +15,8 @@ export default function Comment() {
     const formData = new FormData(e.currentTarget);
     const post = formData.get("mypost");
     const postdata = {
+      postId:id,
+      userId:session?.user?.id,
       post,
       createdAt: new Date().toISOString(),
       userName: session?.user?.name,

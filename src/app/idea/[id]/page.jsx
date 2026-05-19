@@ -140,11 +140,11 @@ export default async function DetailsPage({ params }) {
       </div>
     </main>
     <div>
-      <Comment></Comment>
+      <Comment id={ id }></Comment>
       <div className="w-full max-w-xl mx-auto mt-6 rounded-2xl border
       bg-background text-foreground border-border shadow-md"
     >
-  <CommentList></CommentList>
+  <CommentList id={ id }></CommentList>
       </div>
     
     </div>

@@ -1,17 +1,19 @@
 
+
 import { FaRegComment, FaHeart, FaReply } from "react-icons/fa";
 import { FaUserCircle } from "react-icons/fa";
-export default async function CommentList() {
-    const mycomment = await fetch("http://localhost:5000/comment")
+import DeletePost from "./DeletePost";
+export default async function CommentList({id}) {
+    const mycomment = await fetch(`http://localhost:5000/comment/${id}`)
     const output =await mycomment.json()
 
   return (
     <div>
         {output.map(item=>
-             <div className="px-4 pb-4 space-y-3">
+             <div key={item._id} className="px-4 pb-4 space-y-3">
         {/* Comment Card */}
         <div
-          className="flex gap-3 p-4 rounded-xl border
+          className="flex gap-3 p-4 rounded-xl my-2
           bg-muted/30 hover:bg-muted/50 transition"
         >
           {/* Avatar */}
@@ -51,6 +53,7 @@ export default async function CommentList() {
               </button>
             </div>
           </div>
+          <DeletePost id={item._id}></DeletePost>
         </div>
 
       
