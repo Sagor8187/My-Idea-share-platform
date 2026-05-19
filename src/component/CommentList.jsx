@@ -3,6 +3,7 @@
 import { FaRegComment, FaHeart, FaReply } from "react-icons/fa";
 import { FaUserCircle } from "react-icons/fa";
 import DeletePost from "./DeletePost";
+import EditComment from "./EditComment";
 export default async function CommentList({id}) {
     const mycomment = await fetch(`http://localhost:5000/comment/${id}`)
     const output =await mycomment.json()
@@ -53,7 +54,11 @@ export default async function CommentList({id}) {
               </button>
             </div>
           </div>
-          <DeletePost id={item._id}></DeletePost>
+          <div className="flex gap-2">
+                 <DeletePost id={item._id}></DeletePost>
+                 <EditComment id={item._id}></EditComment>
+          </div>
+         
         </div>
 
       

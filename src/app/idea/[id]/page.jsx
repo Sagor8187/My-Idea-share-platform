@@ -1,4 +1,4 @@
-
+import { FaUserCircle } from "react-icons/fa";
 import Comment from "@/component/Comment";
 import CommentList from "@/component/CommentList";
 
@@ -53,19 +53,28 @@ export default async function DetailsPage({ params }) {
           {/* Author */}
           <div className="flex items-center space-x-3 bg-content2 p-3 rounded-xl w-fit  border-divider">
 
-            <div className="h-10 w-10 rounded-full bg-primary flex items-center justify-center text-white font-bold text-sm shadow-sm">
-              AI
-            </div>
-
-            <div>
-              <p className="text-sm font-semibold text-foreground">
-                Idea Generator
-              </p>
-
-              <p className="text-xs text-default-500">
-                Active Concept
-              </p>
-            </div>
+           <div className="flex items-center gap-2 mt-2">
+                                                <div className="w-8 h-8 rounded-full bg-default-200 text-default-600 font-semibold text-xs flex items-center justify-center border border-divider overflow-hidden select-none">
+                                                  {data?.userimage ? (
+                                <img
+                                  src={data.userimage}
+                                  alt="profile"
+                                  className="w-full h-full object-cover"
+                                />
+                              ) : (
+                                <FaUserCircle className="text-3xl text-muted-foreground" />
+                              )}
+                                                </div>
+                                               <div className="flex flex-col">
+                                                 <span className="text-xs font-medium text-default-600">
+                                                  {data?.userName}
+                                                </span>
+                                                <span className="text-xs font-medium text-default-600">
+                                                  {new Date(data?.createdAt).toLocaleString()}
+                                                 
+                                                </span>
+                                               </div>
+                                              </div>
           </div>
 
           {/* Description */}
