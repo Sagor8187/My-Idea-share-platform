@@ -27,8 +27,9 @@ export default function AddIdea() {
     const mydata = Object.fromEntries(formData.entries());
 
     const data = {
-      userId:session?.user?.id,
-      userName:session?.user?.name,
+      userId: session?.user?.id,
+      userName: session?.user?.name,
+      userimage:session?.user?.image,
       createdAt: new Date().toISOString(),
       ideaTitle: mydata.ideaTitle,
       shortDescription: mydata.shortDescription,
@@ -103,7 +104,7 @@ export default function AddIdea() {
                   radius="xl"
                   size="lg"
                   placeholder="AI Study Assistant App"
-                  classNames={inputStyles}
+                  className={inputStyles}
                 />
                 <FieldError className="text-xs text-danger mt-1" />
               </TextField>
@@ -121,7 +122,7 @@ export default function AddIdea() {
                   size="lg"
                   placeholder="Select category"
                   aria-label="Select category"
-                  classNames={{
+                  className={{
                     trigger:
                       "bg-default-100 dark:bg-default-50 hover:bg-default-200 dark:hover:bg-default-100",
                   }}
@@ -154,7 +155,7 @@ export default function AddIdea() {
                 radius="xl"
                 size="lg"
                 placeholder="Short summary of your idea"
-                classNames={inputStyles}
+                className={inputStyles}
               />
               <FieldError className="text-xs text-danger mt-1" />
             </TextField>
@@ -169,7 +170,7 @@ export default function AddIdea() {
                 radius="xl"
                 size="lg"
                 placeholder="Explain your idea in detail..."
-                classNames={inputStyles}
+                className={inputStyles}
               />
               <FieldError className="text-xs text-danger mt-1" />
             </TextField>
@@ -185,7 +186,7 @@ export default function AddIdea() {
                   radius="xl"
                   size="lg"
                   placeholder="ai, education, chatbot"
-                  classNames={inputStyles}
+                  className={inputStyles}
                 />
                 <Description className="text-xs text-default-400 mt-1">
                   Comma separated tags
@@ -203,7 +204,7 @@ export default function AddIdea() {
                   size="lg"
                   type="number"
                   placeholder="5000"
-                  classNames={inputStyles}
+                  className={inputStyles}
                 />
                 <FieldError className="text-xs text-danger mt-1" />
               </TextField>
@@ -221,7 +222,7 @@ export default function AddIdea() {
                   radius="xl"
                   size="lg"
                   placeholder="https://..."
-                  classNames={inputStyles}
+                  className={inputStyles}
                 />
                 <FieldError className="text-xs text-danger mt-1" />
               </TextField>
@@ -235,7 +236,7 @@ export default function AddIdea() {
                   radius="xl"
                   size="lg"
                   placeholder="Students and teachers"
-                  classNames={inputStyles}
+                  className={inputStyles}
                 />
                 <FieldError className="text-xs text-danger mt-1" />
               </TextField>
@@ -251,7 +252,7 @@ export default function AddIdea() {
                 radius="xl"
                 size="lg"
                 placeholder="What problem are you solving?"
-                classNames={inputStyles}
+                className={inputStyles}
               />
               <FieldError className="text-xs text-danger mt-1" />
             </TextField>
@@ -266,7 +267,7 @@ export default function AddIdea() {
                 radius="xl"
                 size="lg"
                 placeholder="How will your idea solve it?"
-                classNames={inputStyles}
+                className={inputStyles}
               />
               <FieldError className="text-xs text-danger mt-1" />
             </TextField>

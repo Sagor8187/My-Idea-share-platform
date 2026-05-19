@@ -1,6 +1,6 @@
 import { showidea } from "@/lib/data";
 import Link from "next/link";
-
+import { FaUserCircle } from "react-icons/fa";
 export default async function IdeaPage() {
   const mydata = await showidea();
 
@@ -46,13 +46,28 @@ export default async function IdeaPage() {
 
            
               <div className="flex items-center gap-2 mt-2">
-                <div className="w-8 h-8 rounded-full bg-default-200 text-default-600 font-semibold text-xs flex items-center justify-center border border-divider overflow-hidden select-none">
-                  UN
-                </div>
-                <span className="text-xs font-medium text-default-600">
-                  John Doe
-                </span>
-              </div>
+                                     <div className="w-8 h-8 rounded-full bg-default-200 text-default-600 font-semibold text-xs flex items-center justify-center border border-divider overflow-hidden select-none">
+                                       {item?.userimage ? (
+                     <img
+                       src={item.userimage}
+                       alt="profile"
+                       className="w-full h-full object-cover"
+                     />
+                   ) : (
+                     <FaUserCircle className="text-3xl text-muted-foreground" />
+                   )}
+                                     </div>
+                                    <div className="flex flex-col">
+                                      <span className="text-xs font-medium text-default-600">
+                                       {item?.userName}
+                                     </span>
+                                     <span className="text-xs font-medium text-default-600">
+                                       {new Date(item.createdAt).toLocaleString()}
+                                      
+                                     </span>
+                                    </div>
+                                   </div>
+                     
 
               
               <div className="mt-2">

@@ -1,3 +1,7 @@
+
+import Comment from "@/component/Comment";
+import CommentList from "@/component/CommentList";
+
 export default async function DetailsPage({ params }) {
   const { id } = await params;
 
@@ -8,7 +12,8 @@ export default async function DetailsPage({ params }) {
   const data = await res.json();
 
   return (
-    <main className="mt-15 min-h-screen bg-background text-foreground py-10 px-4 sm:px-6 lg:px-8">
+    <div>
+<main className="mt-15 min-h-screen bg-background text-foreground py-10 px-4 sm:px-6 lg:px-8">
       
       <div className="max-w-3xl mx-auto bg-content1 rounded-2xl shadow-xl overflow-hidden  border-divider">
 
@@ -70,14 +75,12 @@ export default async function DetailsPage({ params }) {
 
           {/* Tags */}
           <div className="flex flex-wrap gap-2 pt-2">
-            {data.tags?.map((tag, index) => (
-              <span
-                key={index}
+            <span
+                
                 className="text-xs font-medium bg-default-100 text-default-700 px-3 py-1 rounded-md border border-divider hover:bg-default-200 transition-colors"
               >
-                #{tag}
+                {data?.tags}
               </span>
-            ))}
           </div>
 
           {/* Divider */}
@@ -136,5 +139,16 @@ export default async function DetailsPage({ params }) {
         </div>
       </div>
     </main>
+    <div>
+      <Comment></Comment>
+      <div className="w-full max-w-xl mx-auto mt-6 rounded-2xl border
+      bg-background text-foreground border-border shadow-md"
+    >
+  <CommentList></CommentList>
+      </div>
+    
+    </div>
+    </div>
+    
   );
 }

@@ -36,3 +36,8 @@ lastest hero ui er doc wise amak [component name] banay deo
               </li>
             </ul>
           </div>
+
+
+          const params = useSearchParams()
+  const redirectTo = params.get("redirectTo")
+return NextResponse.redirect(new URL(`/?redirectTo=${request.nextUrl.pathname}`, request.url))

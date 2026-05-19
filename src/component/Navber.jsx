@@ -8,6 +8,7 @@ export default function Navber() {
   const pathname = usePathname();
   
   const { data: session } = authClient.useSession()
+  
    const handlesignout = async ()=>{
     await authClient.signOut();
   }
