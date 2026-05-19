@@ -1,5 +1,6 @@
 "use client";
 
+import { authClient } from "@/lib/auth-client";
 import { FloppyDisk } from "@gravity-ui/icons";
 import {
   Button,
@@ -13,16 +14,18 @@ import {
   TextArea,
   TextField,
   Select,
-  ListBox
+  ListBox,
 } from "@heroui/react";
 
 export default function AddIdea() {
-  const onSubmit = (e) => {
+  const { data: session } = authClient.useSession();
+  console.log(session);
+  const onSubmit = async (e) => {
     e.preventDefault();
 
     const formData = new FormData(e.currentTarget);
     const mydata = Object.fromEntries(formData.entries());
-    
+
     const data = {
       ideaTitle: mydata.ideaTitle,
       shortDescription: mydata.shortDescription,
@@ -36,8 +39,15 @@ export default function AddIdea() {
       proposedSolution: mydata.proposedSolution,
     };
 
-    console.log(data);
-    alert("Idea submitted successfully!");
+    const res = await fetch("http://localhost:5000/idea", {
+      method: "POST",
+      headers: {
+        "content-type": "application/json",
+      },
+      body: JSON.stringify(data),
+    });
+    const output = await res.json();
+    console.log(output);
   };
 
   const categories = [
@@ -48,7 +58,6 @@ export default function AddIdea() {
     { key: "business", label: "Business" },
   ];
 
-  // ইনপুটের জন্য কমন স্টাইল ক্লাস (যা লাইট থিমে ব্ল্যাক হওয়া রোধ করবে)
   const inputStyles = {
     inputWrapper: [
       "bg-default-100",
@@ -62,42 +71,45 @@ export default function AddIdea() {
 
   return (
     <div className="min-h-screen bg-background text-foreground py-12 px-4 sm:px-6 lg:px-8 flex justify-center items-center">
-      <Form 
-        className="w-full max-w-3xl bg-content1 p-6 sm:p-10 rounded-2xl shadow-xl border border-default-100 dark:border-default-50" 
+      <Form
+        className="w-full max-w-3xl bg-content1 p-6 sm:p-10 rounded-2xl shadow-xl "
         onSubmit={onSubmit}
         validationBehavior="native"
       >
         <Fieldset className="w-full space-y-6">
-          
           {/* Header Section */}
           <div className="border-b border-default-100 pb-5">
             <Fieldset.Legend className="text-2xl sm:text-3xl font-extrabold tracking-tight text-foreground">
               Submit Your New Idea
             </Fieldset.Legend>
             <Description className="mt-1.5 text-sm text-default-500 max-w-xl">
-              Share your startup concept with the world and get valuable feedback.
+              Share your startup concept with the world and get valuable
+              feedback.
             </Description>
           </div>
 
           <FieldGroup className="space-y-6">
-
             {/* Row 1: Title + Category */}
             <div className="grid grid-cols-1 md:grid-cols-2 gap-5 items-end">
               <TextField isRequired name="ideaTitle" className="w-full">
-                <Label className="text-xs font-bold uppercase tracking-wider text-default-600 mb-1">Idea Title</Label>
-                <Input 
+                <Label className="text-xs font-bold uppercase tracking-wider text-default-600 mb-1">
+                  Idea Title
+                </Label>
+                <Input
                   variant="flat"
                   radius="xl"
                   size="lg"
-                  placeholder="AI Study Assistant App" 
-                  classNames={inputStyles} 
+                  placeholder="AI Study Assistant App"
+                  classNames={inputStyles}
                 />
                 <FieldError className="text-xs text-danger mt-1" />
               </TextField>
 
               {/* Fixed Select Box */}
               <div className="flex flex-col w-full">
-                <Label className="text-xs font-bold uppercase tracking-wider text-default-600 mb-1">Category</Label>
+                <Label className="text-xs font-bold uppercase tracking-wider text-default-600 mb-1">
+                  Category
+                </Label>
                 <Select
                   isRequired
                   name="category"
@@ -106,16 +118,16 @@ export default function AddIdea() {
                   size="lg"
                   placeholder="Select category"
                   aria-label="Select category"
-                  
                   classNames={{
-                    trigger: "bg-default-100 dark:bg-default-50 hover:bg-default-200 dark:hover:bg-default-100"
+                    trigger:
+                      "bg-default-100 dark:bg-default-50 hover:bg-default-200 dark:hover:bg-default-100",
                   }}
                 >
                   <Select.Trigger>
                     <Select.Value />
                     <Select.Indicator />
                   </Select.Trigger>
-                  
+
                   <Select.Popover>
                     <ListBox>
                       {categories.map((cat) => (
@@ -131,26 +143,29 @@ export default function AddIdea() {
 
             {/* Row 2: Short Description */}
             <TextField isRequired name="shortDescription" className="w-full">
-              <Label className="text-xs font-bold uppercase tracking-wider text-default-600 mb-1">Short Description</Label>
-              <Input 
+              <Label className="text-xs font-bold uppercase tracking-wider text-default-600 mb-1">
+                Short Description
+              </Label>
+              <Input
                 variant="flat"
                 radius="xl"
                 size="lg"
-                placeholder="Short summary of your idea" 
-                classNames={inputStyles} // <-- ফিক্স যোগ করা হয়েছে
+                placeholder="Short summary of your idea"
+                classNames={inputStyles}
               />
               <FieldError className="text-xs text-danger mt-1" />
             </TextField>
 
             {/* Row 3: Detailed Description */}
             <TextField isRequired name="detailedDescription" className="w-full">
-              <Label className="text-xs font-bold uppercase tracking-wider text-default-600 mb-1">Detailed Description</Label>
-              <TextArea 
+              <Label className="text-xs font-bold uppercase tracking-wider text-default-600 mb-1">
+                Detailed Description
+              </Label>
+              <TextArea
                 variant="flat"
                 radius="xl"
                 size="lg"
-                minRows={4}
-                placeholder="Explain your idea in detail..." 
+                placeholder="Explain your idea in detail..."
                 classNames={inputStyles}
               />
               <FieldError className="text-xs text-danger mt-1" />
@@ -159,27 +174,33 @@ export default function AddIdea() {
             {/* Row 4: Tags + Budget */}
             <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
               <TextField name="tags" className="w-full">
-                <Label className="text-xs font-bold uppercase tracking-wider text-default-600 mb-1">Tags</Label>
-                <Input 
+                <Label className="text-xs font-bold uppercase tracking-wider text-default-600 mb-1">
+                  Tags
+                </Label>
+                <Input
                   variant="flat"
                   radius="xl"
                   size="lg"
-                  placeholder="ai, education, chatbot" 
-                  classNames={inputStyles} // <-- ফিক্স যোগ করা হয়েছে
+                  placeholder="ai, education, chatbot"
+                  classNames={inputStyles}
                 />
-                <Description className="text-xs text-default-400 mt-1">Comma separated tags</Description>
+                <Description className="text-xs text-default-400 mt-1">
+                  Comma separated tags
+                </Description>
                 <FieldError className="text-xs text-danger mt-1" />
               </TextField>
 
               <TextField name="estimatedBudget" className="w-full">
-                <Label className="text-xs font-bold uppercase tracking-wider text-default-600 mb-1">Estimated Budget ($)</Label>
-                <Input 
+                <Label className="text-xs font-bold uppercase tracking-wider text-default-600 mb-1">
+                  Estimated Budget ($)
+                </Label>
+                <Input
                   variant="flat"
                   radius="xl"
                   size="lg"
-                  type="text" 
-                  placeholder="5000" 
-                  classNames={inputStyles} // <-- ফিক্স যোগ করা হয়েছে
+                  type="number"
+                  placeholder="5000"
+                  classNames={inputStyles}
                 />
                 <FieldError className="text-xs text-danger mt-1" />
               </TextField>
@@ -188,25 +209,30 @@ export default function AddIdea() {
             {/* Row 5: Image + Audience */}
             <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
               <TextField name="imageURL" className="w-full">
-                <Label className="text-xs font-bold uppercase tracking-wider text-default-600 mb-1">Image URL</Label>
-                <Input 
+                <Label className="text-xs font-bold uppercase tracking-wider text-default-600 mb-1">
+                  Image URL
+                </Label>
+                <Input
+                  type="url"
                   variant="flat"
                   radius="xl"
                   size="lg"
-                  placeholder="https://..." 
-                  classNames={inputStyles} // <-- ফিক্স যোগ করা হয়েছে
+                  placeholder="https://..."
+                  classNames={inputStyles}
                 />
                 <FieldError className="text-xs text-danger mt-1" />
               </TextField>
 
               <TextField name="targetAudience" className="w-full">
-                <Label className="text-xs font-bold uppercase tracking-wider text-default-600 mb-1">Target Audience</Label>
-                <Input 
+                <Label className="text-xs font-bold uppercase tracking-wider text-default-600 mb-1">
+                  Target Audience
+                </Label>
+                <Input
                   variant="flat"
                   radius="xl"
                   size="lg"
-                  placeholder="Students and teachers" 
-                  classNames={inputStyles} // <-- ফিক্স যোগ করা হয়েছে
+                  placeholder="Students and teachers"
+                  classNames={inputStyles}
                 />
                 <FieldError className="text-xs text-danger mt-1" />
               </TextField>
@@ -214,53 +240,54 @@ export default function AddIdea() {
 
             {/* Problem Statement */}
             <TextField name="problemStatement" className="w-full">
-              <Label className="text-xs font-bold uppercase tracking-wider text-default-600 mb-1">Problem Statement</Label>
-              <TextArea 
+              <Label className="text-xs font-bold uppercase tracking-wider text-default-600 mb-1">
+                Problem Statement
+              </Label>
+              <TextArea
                 variant="flat"
                 radius="xl"
                 size="lg"
-                minRows={3}
-                placeholder="What problem are you solving?" 
-                classNames={inputStyles} // <-- ফিক্স যোগ করা হয়েছে
+                placeholder="What problem are you solving?"
+                classNames={inputStyles}
               />
               <FieldError className="text-xs text-danger mt-1" />
             </TextField>
 
             {/* Proposed Solution */}
             <TextField name="proposedSolution" className="w-full">
-              <Label className="text-xs font-bold uppercase tracking-wider text-default-600 mb-1">Proposed Solution</Label>
-              <TextArea 
+              <Label className="text-xs font-bold uppercase tracking-wider text-default-600 mb-1">
+                Proposed Solution
+              </Label>
+              <TextArea
                 variant="flat"
                 radius="xl"
                 size="lg"
-                minRows={3}
-                placeholder="How will your idea solve it?" 
-                classNames={inputStyles} // <-- ফিক্স যোগ করা হয়েছে
+                placeholder="How will your idea solve it?"
+                classNames={inputStyles}
               />
               <FieldError className="text-xs text-danger mt-1" />
             </TextField>
-
           </FieldGroup>
 
           {/* Action Buttons */}
           <Fieldset.Actions className="flex items-center justify-end gap-3 pt-4 border-t border-default-100">
-            <Button 
-              type="reset" 
+            <Button
+              type="reset"
               variant="flat"
               radius="xl"
               className="px-5 font-semibold text-foreground cursor-pointer"
             >
               Reset
             </Button>
-            
-            <Button 
+
+            <Button
               type="submit"
               color="primary"
               radius="xl"
               className="flex items-center gap-2 px-6 font-semibold shadow-md active:scale-[0.98] transition-all cursor-pointer"
             >
               <FloppyDisk className="w-4 h-4" />
-              Submit Idea
+              Add Idea
             </Button>
           </Fieldset.Actions>
         </Fieldset>
