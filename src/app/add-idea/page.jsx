@@ -27,6 +27,9 @@ export default function AddIdea() {
     const mydata = Object.fromEntries(formData.entries());
 
     const data = {
+      userId:session?.user?.id,
+      userName:session?.user?.name,
+      createdAt: new Date().toISOString(),
       ideaTitle: mydata.ideaTitle,
       shortDescription: mydata.shortDescription,
       detailedDescription: mydata.detailedDescription,
