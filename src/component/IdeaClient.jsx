@@ -16,7 +16,8 @@ export default function IdeaClient({ initialData }) {
     if (search) url += `search=${search}&`;
     if (category) url += `category=${category}`;
 
-    const res = await fetch(url);
+    const res = await fetch(url,{cache: "no-store",
+    next: { revalidate: 0 }});
     const data = await res.json();
 
     setIdeas(data);
