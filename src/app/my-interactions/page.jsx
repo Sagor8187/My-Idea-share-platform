@@ -19,7 +19,7 @@ export default async function MyInteractionPage() {
   });
 
   const res = await fetch(
-    `${process.env.NEXT_PUBLIC_API_URL}/comment/${session?.user?.id}`,
+    `${process.env.NEXT_PUBLIC_API_URL}/my-comment/${session?.user?.id}`,
     {
       headers: {
         authorization: `Bearer ${token}`,
