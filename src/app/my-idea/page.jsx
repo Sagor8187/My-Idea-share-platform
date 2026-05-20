@@ -19,7 +19,7 @@ export default async function MyIdeaPage() {
   const session = await auth.api.getSession({
     headers: await headers(),
   });
-  const res = await fetch(`${process.env.MY_PUBLIC_NEXT_URL}/${session?.user?.id}`,{
+  const res = await fetch(`${process.env.MY_PUBLIC_NEXT_URL}/my-idea/${session?.user?.id}`,{
     headers:{
           authorization :`Bearer ${token}`
         }
