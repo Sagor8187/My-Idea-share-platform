@@ -41,7 +41,7 @@ export default function ForgotPassword() {
             type="email"
             label="Email Address"
             placeholder="Enter your email"
-            isRequired
+            required
             className="p-2  bg-background text-foreground w-full"
           />
 

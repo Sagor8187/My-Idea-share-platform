@@ -12,8 +12,14 @@ import {
   TextField,
 } from "@heroui/react";
 import Link from "next/link";
+import { useRouter, useSearchParams } from "next/navigation";
 
 export default function LoginPage() {
+    const router = useRouter();
+  const searchParams = useSearchParams();
+
+  const callbackUrl = searchParams.get("callbackUrl") || "/";
+
   const onSubmit = async(e) => {
     e.preventDefault();
     const formData = new FormData(e.currentTarget);
@@ -23,7 +29,7 @@ export default function LoginPage() {
     email: mydata.email, // required
     password: mydata.password, // required
     rememberMe: true,
-    callbackURL: "http://localhost:3000/",
+    // callbackURL: "http://localhost:3000/",
 });
   if (error) {
       toast.error(error.message || "Login failed");
@@ -33,6 +39,7 @@ export default function LoginPage() {
    
     if (data) {
       toast.success("Login successful");
+       router.replace(callbackUrl);
     }
     } catch (err) {
         console.error("error ",err)

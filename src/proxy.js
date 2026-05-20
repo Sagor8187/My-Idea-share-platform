@@ -11,7 +11,11 @@ export async function proxy(request) {
 
 
     if(!session){
- return NextResponse.redirect(new URL('/login', request.url))
+       const url = request.nextUrl.clone();
+       return NextResponse.redirect(
+      new URL(`/login?callbackUrl=${url.pathname}`, request.url)
+    );
+//  return NextResponse.redirect(new URL('/login', request.url))
  
     }
  
