@@ -49,7 +49,7 @@ const router = useRouter();
       proposedSolution: mydata.proposedSolution,
     };
 
-    const res = await fetch("https://idea-genarator-express-server.vercel.app/idea", {
+    const res = await fetch(`${process.env.MY_PUBLIC_NEXT_URL}/idea`, {
       method: "POST",
       headers: {
         "content-type": "application/json",

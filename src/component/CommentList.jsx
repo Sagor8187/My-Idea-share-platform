@@ -7,7 +7,7 @@ import 'animate.css';
 
 export default async function CommentList({id}) {
    
-    const mycomment = await fetch(`https://idea-genarator-express-server.vercel.app/${id}`)
+    const mycomment = await fetch(`${process.env.MY_PUBLIC_NEXT_URL}/${id}`)
     const output =await mycomment.json()
    
   return (

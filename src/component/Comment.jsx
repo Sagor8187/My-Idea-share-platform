@@ -28,7 +28,7 @@ export default function Comment({id}) {
       userimage: session?.user?.image,
     };
 
-    const res = await fetch("https://idea-genarator-express-server.vercel.app//comment", {
+    const res = await fetch(`${process.env.MY_PUBLIC_NEXT_URL}/comment`, {
       method: "POST",
       headers: {
         "content-type": "application/json",

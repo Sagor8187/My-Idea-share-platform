@@ -9,7 +9,7 @@ export default function IdeaDelete({item}) {
 const deleteIdea = async () => {
  const {data:tokendata} = await authClient.token()
   const res = await fetch(
-    `https://idea-genarator-express-server.vercel.app/idea/${item._id}`,
+    `${process.env.MY_PUBLIC_NEXT_URL}/idea/${item._id}`,
     {
       method: "DELETE",
       headers:{

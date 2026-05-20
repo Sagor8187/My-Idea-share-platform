@@ -18,7 +18,7 @@ export default async function MyInteractionPage() {
         headers: await headers()
       })
 
-    const res = await fetch(`https://idea-genarator-express-server.vercel.app/${session?.user?.id}`,{
+    const res = await fetch(`${process.env.MY_PUBLIC_NEXT_URL}/${session?.user?.id}`,{
       headers:{
       authorization :`Bearer ${token}`
     }

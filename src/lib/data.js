@@ -1,7 +1,7 @@
 
 
 export const showidea = async ()=>{
-    const res = await fetch("https://idea-genarator-express-server.vercel.app/idea");
+    const res = await fetch(`${process.env.MY_PUBLIC_NEXT_URL}/idea`);
     const data = await res.json();
     return data
 } 

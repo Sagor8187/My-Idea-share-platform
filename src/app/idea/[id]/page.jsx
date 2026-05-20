@@ -15,7 +15,7 @@ export default async function DetailsPage({ params }) {
     headers: await headers()
   })
   
-  const res = await fetch(`https://idea-genarator-express-server.vercel.app/${id}`, {
+  const res = await fetch(`${process.env.MY_PUBLIC_NEXT_URL}/${id}`, {
     headers:{
       authorization :`Bearer ${token}`
     }

@@ -7,7 +7,7 @@ export default function DeletePost({id}) {
      const router = useRouter();
     const deletepost =async ()=>{
         const {data:tokendata} = await authClient.token()
-const res = await fetch(`https://idea-genarator-express-server.vercel.app/comment/${id}`,{
+const res = await fetch(`${process.env.MY_PUBLIC_NEXT_URL}/${id}`,{
     method:"DELETE",
     headers:{
          authorization :`Bearer ${tokendata?.token}`
