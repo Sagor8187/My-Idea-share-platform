@@ -15,7 +15,7 @@ export default async function DetailsPage({ params }) {
     headers: await headers()
   })
   
-  const res = await fetch(`${process.env.MY_PUBLIC_NEXT_URL}/${id}`, {
+  const res = await fetch(`${process.env.MY_PUBLIC_NEXT_URL}/idea/${id}`, {
     headers:{
       authorization :`Bearer ${token}`
     }
