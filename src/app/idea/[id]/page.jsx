@@ -2,11 +2,19 @@ import { FaUserCircle } from "react-icons/fa";
 import Comment from "@/component/Comment";
 import CommentList from "@/component/CommentList";
 import 'animate.css';
+import { auth } from "@/lib/auth";
+import { headers } from "next/headers";
 export default async function DetailsPage({ params }) {
   const { id } = await params;
 
+  const {token} = await auth.api.getToken({
+    headers: await headers()
+  })
+  
   const res = await fetch(`http://localhost:5000/idea/${id}`, {
-    cache: "no-store",
+    headers:{
+      authorization :`Bearer ${token}`
+    }
   });
 
   const data = await res.json();

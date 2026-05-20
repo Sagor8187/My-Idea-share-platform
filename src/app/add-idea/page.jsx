@@ -3,6 +3,7 @@
 import { authClient } from "@/lib/auth-client";
 import { FloppyDisk } from "@gravity-ui/icons";
 import toast from "react-hot-toast";
+import { useRouter } from "next/navigation";
 import 'animate.css';
 import {
   Button,
@@ -21,11 +22,13 @@ import {
 
 export default function AddIdea() {
   const { data: session } = authClient.useSession();
-  console.log(session);
+const router = useRouter();
+  
   const onSubmit = async (e) => {
     e.preventDefault();
-
-    const formData = new FormData(e.currentTarget);
+    const {data:tokendata} = await authClient.token()
+    console.log(tokendata)
+    const formData = new FormData(e.target);
     const mydata = Object.fromEntries(formData.entries());
 
     const data = {
@@ -55,6 +58,7 @@ export default function AddIdea() {
     const output = await res.json();
     if(output){
       toast.success('Your Idea Added Successfull')
+      router.push("/idea");
        
     }
   };
