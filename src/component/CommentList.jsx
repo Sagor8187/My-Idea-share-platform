@@ -7,7 +7,7 @@ import 'animate.css';
 
 export default async function CommentList({id}) {
    
-    const mycomment = await fetch(`${process.env.MY_PUBLIC_NEXT_URL}/${id}`)
+    const mycomment = await fetch(`${process.env.MY_PUBLIC_NEXT_URL}/comment/${id}`)
     const output =await mycomment.json()
    
   return (
