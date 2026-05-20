@@ -12,7 +12,7 @@ export default function IdeaClient({ initialData }) {
 
 
   const handleSearch = async () => {
-    let url = "http://localhost:5000/idea?";
+    let url = "https://idea-genarator-express-server.vercel.app/idea?";
 
     if (search) url += `search=${search}&`;
     if (category) url += `category=${category}`;

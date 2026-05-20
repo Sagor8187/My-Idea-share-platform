@@ -48,7 +48,7 @@ createdAt:new Date().toISOString()
   };
 
   const res = await fetch(
-    `http://localhost:5000/idea/${item._id}`,
+    `https://idea-genarator-express-server.vercel.app/idea/${item._id}`,
     {
       method: "PATCH",
       headers: {

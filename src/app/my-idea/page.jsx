@@ -19,7 +19,7 @@ export default async function MyIdeaPage() {
   const session = await auth.api.getSession({
     headers: await headers(),
   });
-  const res = await fetch(`http://localhost:5000/my-idea/${session?.user?.id}`,{
+  const res = await fetch(`https://idea-genarator-express-server.vercel.app/${session?.user?.id}`,{
     headers:{
           authorization :`Bearer ${token}`
         }

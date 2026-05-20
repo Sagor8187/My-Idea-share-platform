@@ -10,7 +10,7 @@ export default function EditComment({ id, oldPost }) {
  const router = useRouter();
   const handleUpdate = async () => {
     const {data:tokendata} = await authClient.token()
-    const res = await fetch(`http://localhost:5000/comment/${id}`, {
+    const res = await fetch(`https://idea-genarator-express-server.vercel.app/${id}`, {
       method: "PATCH",
       headers: {
         "Content-Type": "application/json",

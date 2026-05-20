@@ -2,7 +2,7 @@ import { headers } from "next/headers";
 import { auth } from "./auth";
 
 export const showidea = async ()=>{
-    const res = await fetch("http://localhost:5000/idea");
+    const res = await fetch("https://idea-genarator-express-server.vercel.app/idea");
     const data = await res.json();
     return data
 } 
@@ -12,7 +12,7 @@ export const showidea = async ()=>{
     })
   export  const allcomment =async(id)=>{
     
-  const mycomment = await fetch(`http://localhost:5000/comment/${id}`,{
+  const mycomment = await fetch(`https://idea-genarator-express-server.vercel.app/comment/${id}`,{
        headers:{
             authorization :`Bearer ${token}`
           }
