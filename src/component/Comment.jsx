@@ -4,7 +4,7 @@ import { FaRegComment } from "react-icons/fa";
 import { IoMdSend } from "react-icons/io";
 import { useRouter } from "next/navigation";
 import { authClient } from "@/lib/auth-client";
-import CommentList from "./CommentList";
+
 import toast from "react-hot-toast";
 
 

@@ -1,6 +1,6 @@
 import Carousel from '@/component/Carousel'
 
-import React from 'react'
+
 import 'animate.css';
 import HomeFeature from '@/component/HomeFeature';
 import Contact from '@/component/Contact';

@@ -1,6 +1,6 @@
 import { auth } from "@/lib/auth";
 import { headers } from "next/headers";
-import { FaRegComment, FaHeart, FaReply } from "react-icons/fa";
+import {  FaHeart, FaReply } from "react-icons/fa";
 import { FaUserCircle } from "react-icons/fa";
 import 'animate.css';
 

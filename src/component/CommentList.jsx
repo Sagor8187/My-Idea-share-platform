@@ -1,5 +1,5 @@
 
-import { FaRegComment, FaHeart, FaReply } from "react-icons/fa";
+import { FaHeart, FaReply } from "react-icons/fa";
 import { FaUserCircle } from "react-icons/fa";
 import DeletePost from "./DeletePost";
 import EditComment from "./EditComment";
@@ -9,7 +9,7 @@ export default async function CommentList({id}) {
    
     const mycomment = await fetch(`https://idea-genarator-express-server.vercel.app/${id}`)
     const output =await mycomment.json()
-    console.log(output)
+   
   return (
     <div>
 

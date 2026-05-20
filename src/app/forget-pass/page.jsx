@@ -1,6 +1,6 @@
 "use client";
 
-import { Button, Input } from "@heroui/react";
+import { Button } from "@heroui/react";
 import Link from "next/link";
 
 export default function ForgotPassword() {
