@@ -1,5 +1,5 @@
 # NextIdea – Startup Idea Sharing Platform
-
+live Link : https://my-idea-share-platform.vercel.app/
 ---
 
 ## Project Overview
