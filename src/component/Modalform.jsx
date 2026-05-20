@@ -41,7 +41,7 @@ export default function Modalform() {
         id="my_modal_5"
         className="modal modal-bottom sm:modal-middle"
       >
-        <div className="modal-box bg-base-100 text-base-content border border-base-300">
+        <div className="modal-box bg-background text-foreground border border-base-300">
 
           <h3 className="font-bold text-lg mb-4 text-center">
             Update Information
@@ -58,7 +58,7 @@ export default function Modalform() {
                 type="text"
                 name="name"
                 placeholder="Enter your name"
-                className="input input-bordered w-full bg-base-200 text-base-content"
+                className="input input-bordered w-full bg-background text-foreground"
               />
             </div>
 
@@ -71,7 +71,7 @@ export default function Modalform() {
                 type="text"
                 name="url"
                 placeholder="Enter image URL"
-                className="input input-bordered w-full bg-base-200 text-base-content"
+                className="input input-bordered w-full bg-background text-foreground"
               />
             </div>
 
