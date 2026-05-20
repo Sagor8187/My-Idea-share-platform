@@ -4,7 +4,7 @@ import { authClient } from "@/lib/auth-client";
 import { FloppyDisk } from "@gravity-ui/icons";
 import toast from "react-hot-toast";
 import { useRouter } from "next/navigation";
-import 'animate.css';
+import "animate.css";
 import {
   Button,
   Description,
@@ -20,22 +20,21 @@ import {
   ListBox,
 } from "@heroui/react";
 
-
 export default function AddIdea() {
   const { data: session } = authClient.useSession();
-const router = useRouter();
-  
+  const router = useRouter();
+
   const onSubmit = async (e) => {
     e.preventDefault();
-    const {data:tokendata} = await authClient.token()
-    
+    const { data: tokendata } = await authClient.token();
+
     const formData = new FormData(e.target);
     const mydata = Object.fromEntries(formData.entries());
 
     const data = {
       userId: session?.user?.id,
       userName: session?.user?.name,
-      userimage:session?.user?.image,
+      userimage: session?.user?.image,
       createdAt: new Date().toISOString(),
       ideaTitle: mydata.ideaTitle,
       shortDescription: mydata.shortDescription,
@@ -49,22 +48,21 @@ const router = useRouter();
       proposedSolution: mydata.proposedSolution,
     };
 
-    const res = await fetch(`${process.env.MY_PUBLIC_NEXT_URL}/idea`, {
+    const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/idea`, {
       method: "POST",
       headers: {
         "content-type": "application/json",
-        authorization :`Bearer ${tokendata?.token}`
+        authorization: `Bearer ${tokendata?.token}`,
       },
       body: JSON.stringify(data),
     });
     const output = await res.json();
-    console.log(output)
-    if(output.acknowledged){
-      toast.success('Your Idea Added Successfull')
+    console.log(output);
+    if (output.acknowledged) {
+      toast.success("Your Idea Added Successfull");
       router.push("/idea");
-       
-    }else{
-       toast.error(`Error ${output.massage}`)
+    } else {
+      toast.error(`Error ${output.massage}`);
     }
   };
 

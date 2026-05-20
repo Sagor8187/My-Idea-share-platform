@@ -7,42 +7,40 @@ import { authClient } from "@/lib/auth-client";
 
 import toast from "react-hot-toast";
 
-
-export default function Comment({id}) {
+export default function Comment({ id }) {
   const { data: session } = authClient.useSession();
   const router = useRouter();
 
-
   const submitpost = async (e) => {
-     e.preventDefault();
-    const {data:tokendata} = await authClient.token()
-   
+    e.preventDefault();
+    const { data: tokendata } = await authClient.token();
+
     const formData = new FormData(e.target);
     const post = formData.get("mypost");
     const postdata = {
-      postId:id,
-      userId:session?.user?.id,
+      postId: id,
+      userId: session?.user?.id,
       post,
       createdAt: new Date().toISOString(),
       userName: session?.user?.name,
       userimage: session?.user?.image,
     };
 
-    const res = await fetch(`${process.env.MY_PUBLIC_NEXT_URL}/comment`, {
+    const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/comment`, {
       method: "POST",
       headers: {
         "content-type": "application/json",
-        authorization :`Bearer ${tokendata?.token}`
+        authorization: `Bearer ${tokendata?.token}`,
       },
       body: JSON.stringify(postdata),
     });
     const output = await res.json();
-    console.log(output)
-    if(output){
-      toast.success('Add your Comment')
-       router.refresh();
+    console.log(output);
+    if (output) {
+      toast.success("Add your Comment");
+      router.refresh();
     }
-    
+
     console.log(output);
   };
 
@@ -83,7 +81,6 @@ export default function Comment({id}) {
       </div>
 
       {/* Comment List */}
-      
     </div>
   );
 }

@@ -7,22 +7,22 @@ import toast from "react-hot-toast";
 import { authClient } from "@/lib/auth-client";
 export default function EditComment({ id, oldPost }) {
   const [post, setPost] = useState(oldPost || "");
- const router = useRouter();
+  const router = useRouter();
   const handleUpdate = async () => {
-    const {data:tokendata} = await authClient.token()
-    const res = await fetch(`${process.env.MY_PUBLIC_NEXT_URL}/${id}`, {
+    const { data: tokendata } = await authClient.token();
+    const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/${id}`, {
       method: "PATCH",
       headers: {
         "Content-Type": "application/json",
-         authorization :`Bearer ${tokendata?.token}`
+        authorization: `Bearer ${tokendata?.token}`,
       },
       body: JSON.stringify({ post }),
     });
 
     const data = await res.json();
-    if(data){
-      toast.success("Comment Edit Successfull")
-       router.refresh();
+    if (data) {
+      toast.success("Comment Edit Successfull");
+      router.refresh();
     }
   };
 
@@ -33,12 +33,10 @@ export default function EditComment({ id, oldPost }) {
       <Modal.Backdrop>
         <Modal.Container placement="auto">
           <Modal.Dialog className="sm:max-w-md">
-
             <Modal.CloseTrigger />
 
             <Modal.Body className="p-6">
               <Surface variant="default">
-
                 <TextField className="w-full">
                   <Label>Update Comment</Label>
 
@@ -48,7 +46,6 @@ export default function EditComment({ id, oldPost }) {
                     placeholder="Edit your Comment"
                   />
                 </TextField>
-
               </Surface>
             </Modal.Body>
 
@@ -57,11 +54,8 @@ export default function EditComment({ id, oldPost }) {
                 Cancel
               </Button>
 
-              <Button onClick={handleUpdate}>
-                Save
-              </Button>
+              <Button onClick={handleUpdate}>Save</Button>
             </Modal.Footer>
-
           </Modal.Dialog>
         </Modal.Container>
       </Modal.Backdrop>
