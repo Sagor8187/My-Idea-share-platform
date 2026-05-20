@@ -10,7 +10,7 @@ export default function EditComment({ id, oldPost }) {
   const router = useRouter();
   const handleUpdate = async () => {
     const { data: tokendata } = await authClient.token();
-    const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/${id}`, {
+    const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/comment/${id}`, {
       method: "PATCH",
       headers: {
         "Content-Type": "application/json",

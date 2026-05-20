@@ -7,6 +7,10 @@ import "animate.css";
 export default async function CommentList({ id }) {
   const mycomment = await fetch(
     `${process.env.NEXT_PUBLIC_API_URL}/comment/${id}`,
+    {
+      cache: "no-store",
+    
+    }
   );
   const output = await mycomment.json();
 

@@ -7,7 +7,7 @@ export default function DeletePost({ id }) {
   const router = useRouter();
   const deletepost = async () => {
     const { data: tokendata } = await authClient.token();
-    const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/${id}`, {
+    const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/comment/${id}`, {
       method: "DELETE",
       headers: {
         authorization: `Bearer ${tokendata?.token}`,

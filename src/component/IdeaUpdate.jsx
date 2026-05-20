@@ -40,7 +40,7 @@ export default function IdeaUpdate({ item }) {
       createdAt: new Date().toISOString(),
     };
 
-    const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/${item._id}`, {
+    const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/idea/${item._id}`, {
       method: "PATCH",
       headers: {
         "content-type": "application/json",

@@ -24,6 +24,8 @@ export default async function MyInteractionPage() {
       headers: {
         authorization: `Bearer ${token}`,
       },
+      cache: "no-store",
+    
     },
   );
   const output = await res.json();
