@@ -6,11 +6,24 @@ import Link from "next/link";
 import { FaUserCircle } from "react-icons/fa";
 import 'animate.css';
 
+export const metadata = {
+  title: "My Idea | Next Idea",
+  description: "Share your idea present your telent",
+};
 export default async function MyIdeaPage() {
+
+   const {token} = await auth.api.getToken({
+    headers: await headers()
+  })
+
   const session = await auth.api.getSession({
     headers: await headers(),
   });
-  const res = await fetch(`http://localhost:5000/my-idea/${session?.user?.id}`);
+  const res = await fetch(`http://localhost:5000/my-idea/${session?.user?.id}`,{
+    headers:{
+          authorization :`Bearer ${token}`
+        }
+  });
   const ideas = await res.json();
   
 

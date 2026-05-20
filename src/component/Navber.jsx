@@ -8,13 +8,23 @@ import toast from "react-hot-toast";
 export default function Navber() {
   const pathname = usePathname();
   
-  const { data: session } = authClient.useSession()
+  const { data: session,isPending } = authClient.useSession()
   
    const handlesignout = async ()=>{
     await authClient.signOut();
     toast.success("Logout successful");
   }
-  
+//   if (isPending) {
+//   return (
+//     <div className="fixed top-0 left-0 w-full z-50 bg-background/70 backdrop-blur-md shadow border-divider">
+//       <div className="navbar">
+//         <div className="navbar-end">
+//           <span className="loading loading-spinner text-primary"></span>
+//         </div>
+//       </div>
+//     </div>
+//   );
+// }
   return (
     <div  className="animate__animated animate__flipInX fixed top-0 left-0 w-full z-50 bg-background/70 backdrop-blur-md shadow border-divider">
       <div className="navbar shadow-sm">
@@ -177,7 +187,14 @@ export default function Navber() {
         </div>
         <div className="navbar-end flex gap-5">
           <ThemeSwitch></ThemeSwitch>
-          {session ?<div>
+          {isPending?<div className="navbar navbar-end fixed top-0 left-0 w-full z-50 bg-background/70 backdrop-blur-md shadow border-divider">
+      <div className="navbar">
+        <div className="navbar-end">
+          <span className="loading loading-spinner text-primary"></span>
+        </div>
+      </div>
+    </div>:<div>
+      {session ?<div>
     <div className="dropdown dropdown-end">
   <div
     tabIndex={0}
@@ -213,6 +230,8 @@ export default function Navber() {
 <Link href="/login" className="btn  btn-outline btn-primary">Login</Link>
           <Link className="btn btn-outline btn-primary" href="/signup">Signup</Link>
           </div>}
+      </div>}
+          
           
         </div>
       </div>

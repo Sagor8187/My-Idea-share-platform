@@ -74,7 +74,7 @@ export default function LoginPage() {
             <Label className="text-sm font-medium">Email</Label>
             <Input
               placeholder="Enter your Email"
-              className="h-11 w-full rounded-lg"
+              className="h-11 w-full rounded-lg bg-background text-foreground"
             />
             <FieldError />
           </TextField>
@@ -101,7 +101,7 @@ export default function LoginPage() {
             <Label className="text-sm font-medium">Password</Label>
             <Input
               placeholder="Enter your password"
-              className="h-11 w-full rounded-lg"
+              className="h-11 w-full rounded-lg bg-background text-foreground"
             />
             <Description>Must be at least 6 characters with 1 uppercase and 1 number</Description>
             <FieldError />
@@ -123,7 +123,8 @@ export default function LoginPage() {
   variant="secondary"
   className="w-full h-11 rounded-lg font-semibold"
 >
-  Forget Password
+  <Link href="/forget-pass">Forget Password</Link>
+  
 </Button>
           </div>
         </Form>

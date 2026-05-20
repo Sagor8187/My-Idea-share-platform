@@ -4,6 +4,10 @@ import CommentList from "@/component/CommentList";
 import 'animate.css';
 import { auth } from "@/lib/auth";
 import { headers } from "next/headers";
+export const metadata = {
+  title: "Idea Details | Next Idea",
+  description: "Share your idea present your telent",
+};
 export default async function DetailsPage({ params }) {
   const { id } = await params;
 

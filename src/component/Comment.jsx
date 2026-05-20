@@ -14,9 +14,10 @@ export default function Comment({id}) {
 
 
   const submitpost = async (e) => {
-    
-    e.preventDefault();
-    const formData = new FormData(e.currentTarget);
+     e.preventDefault();
+    const {data:tokendata} = await authClient.token()
+   
+    const formData = new FormData(e.target);
     const post = formData.get("mypost");
     const postdata = {
       postId:id,
@@ -31,10 +32,12 @@ export default function Comment({id}) {
       method: "POST",
       headers: {
         "content-type": "application/json",
+        authorization :`Bearer ${tokendata?.token}`
       },
       body: JSON.stringify(postdata),
     });
     const output = await res.json();
+    console.log(output)
     if(output){
       toast.success('Add your Comment')
        router.refresh();

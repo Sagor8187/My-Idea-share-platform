@@ -4,14 +4,17 @@ import { useState } from "react";
 import { Button, Input, Label, Modal, Surface, TextField } from "@heroui/react";
 import { useRouter } from "next/navigation";
 import toast from "react-hot-toast";
+import { authClient } from "@/lib/auth-client";
 export default function EditComment({ id, oldPost }) {
   const [post, setPost] = useState(oldPost || "");
  const router = useRouter();
   const handleUpdate = async () => {
+    const {data:tokendata} = await authClient.token()
     const res = await fetch(`http://localhost:5000/comment/${id}`, {
       method: "PATCH",
       headers: {
         "Content-Type": "application/json",
+         authorization :`Bearer ${tokendata?.token}`
       },
       body: JSON.stringify({ post }),
     });

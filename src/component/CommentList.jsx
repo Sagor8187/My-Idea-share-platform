@@ -1,14 +1,15 @@
 
-
 import { FaRegComment, FaHeart, FaReply } from "react-icons/fa";
 import { FaUserCircle } from "react-icons/fa";
 import DeletePost from "./DeletePost";
 import EditComment from "./EditComment";
 import 'animate.css';
+
 export default async function CommentList({id}) {
+   
     const mycomment = await fetch(`http://localhost:5000/comment/${id}`)
     const output =await mycomment.json()
-
+    console.log(output)
   return (
     <div>
 

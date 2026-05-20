@@ -20,6 +20,7 @@ import {
   ListBox,
 } from "@heroui/react";
 
+
 export default function AddIdea() {
   const { data: session } = authClient.useSession();
 const router = useRouter();
@@ -27,7 +28,7 @@ const router = useRouter();
   const onSubmit = async (e) => {
     e.preventDefault();
     const {data:tokendata} = await authClient.token()
-    console.log(tokendata)
+    
     const formData = new FormData(e.target);
     const mydata = Object.fromEntries(formData.entries());
 
@@ -52,14 +53,18 @@ const router = useRouter();
       method: "POST",
       headers: {
         "content-type": "application/json",
+        authorization :`Bearer ${tokendata?.token}`
       },
       body: JSON.stringify(data),
     });
     const output = await res.json();
-    if(output){
+    console.log(output)
+    if(output.acknowledged){
       toast.success('Your Idea Added Successfull')
       router.push("/idea");
        
+    }else{
+       toast.error(`Error ${output.massage}`)
     }
   };
 
@@ -73,7 +78,8 @@ const router = useRouter();
 
   const inputStyles = {
     inputWrapper: [
-      "bg-default-100",
+      "bg-background",
+      "text-foreground",
       "dark:bg-default-50",
       "hover:bg-default-200",
       "dark:hover:bg-default-100",
@@ -113,7 +119,7 @@ const router = useRouter();
                   radius="xl"
                   size="lg"
                   placeholder="AI Study Assistant App"
-                  className={inputStyles}
+                  className="bg-background text-foreground"
                 />
                 <FieldError className="text-xs text-danger mt-1" />
               </TextField>
@@ -164,7 +170,7 @@ const router = useRouter();
                 radius="xl"
                 size="lg"
                 placeholder="Short summary of your idea"
-                className={inputStyles}
+                className="bg-background text-foreground"
               />
               <FieldError className="text-xs text-danger mt-1" />
             </TextField>
@@ -195,7 +201,7 @@ const router = useRouter();
                   radius="xl"
                   size="lg"
                   placeholder="ai, education, chatbot"
-                  className={inputStyles}
+                  className="bg-background text-foreground"
                 />
                 <Description className="text-xs text-default-400 mt-1">
                   Comma separated tags
@@ -213,7 +219,7 @@ const router = useRouter();
                   size="lg"
                   type="number"
                   placeholder="5000"
-                  className={inputStyles}
+                  className="bg-background text-foreground"
                 />
                 <FieldError className="text-xs text-danger mt-1" />
               </TextField>
@@ -231,7 +237,7 @@ const router = useRouter();
                   radius="xl"
                   size="lg"
                   placeholder="https://..."
-                  className={inputStyles}
+                  className="bg-background text-foreground"
                 />
                 <FieldError className="text-xs text-danger mt-1" />
               </TextField>
@@ -245,7 +251,7 @@ const router = useRouter();
                   radius="xl"
                   size="lg"
                   placeholder="Students and teachers"
-                  className={inputStyles}
+                  className="bg-background text-foreground"
                 />
                 <FieldError className="text-xs text-danger mt-1" />
               </TextField>

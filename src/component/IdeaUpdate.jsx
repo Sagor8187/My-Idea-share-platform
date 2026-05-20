@@ -17,6 +17,7 @@ import {
   Select,
   ListBox,
 } from "@heroui/react";
+import { authClient } from "@/lib/auth-client";
 
 
 export default function IdeaUpdate({item}) {
@@ -30,6 +31,7 @@ const onSubmit = async (e) => {
 
   const mydata = Object.fromEntries(formData.entries());
 
+  const {data:tokendata} = await authClient.token()
   const data = {
     ideaTitle: mydata.ideaTitle,
     shortDescription: mydata.shortDescription,
@@ -51,6 +53,7 @@ createdAt:new Date().toISOString()
       method: "PATCH",
       headers: {
         "content-type": "application/json",
+        authorization :`Bearer ${tokendata?.token}`
       },
       body: JSON.stringify(data),
     }

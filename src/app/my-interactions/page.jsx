@@ -3,12 +3,26 @@ import { headers } from "next/headers";
 import { FaRegComment, FaHeart, FaReply } from "react-icons/fa";
 import { FaUserCircle } from "react-icons/fa";
 import 'animate.css';
+
+export const metadata = {
+  title: "My Comment | Next Idea",
+  description: "Share your idea present your telent",
+};
+
 export default async function MyInteractionPage() {
     const session = await auth.api.getSession({
       headers: await headers(),
     });
 
-    const res = await fetch(`http://localhost:5000/my-comment/${session?.user?.id}`)
+    const {token} = await auth.api.getToken({
+        headers: await headers()
+      })
+
+    const res = await fetch(`http://localhost:5000/my-comment/${session?.user?.id}`,{
+      headers:{
+      authorization :`Bearer ${token}`
+    }
+    })
     const output = await res.json()
     
   return (
