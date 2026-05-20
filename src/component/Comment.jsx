@@ -2,12 +2,16 @@
 
 import { FaRegComment } from "react-icons/fa";
 import { IoMdSend } from "react-icons/io";
-
+import { useRouter } from "next/navigation";
 import { authClient } from "@/lib/auth-client";
 import CommentList from "./CommentList";
+import toast from "react-hot-toast";
+
 
 export default function Comment({id}) {
   const { data: session } = authClient.useSession();
+  const router = useRouter();
+
 
   const submitpost = async (e) => {
     
@@ -31,6 +35,11 @@ export default function Comment({id}) {
       body: JSON.stringify(postdata),
     });
     const output = await res.json();
+    if(output){
+      toast.success('Add your Comment')
+       router.refresh();
+    }
+    
     console.log(output);
   };
 
@@ -42,7 +51,7 @@ export default function Comment({id}) {
       {/* Header */}
       <div className="flex items-center gap-2 px-5 py-4 border-b border-border">
         <FaRegComment className="text-lg" />
-        <h2 className="text-lg font-semibold">Comments</h2>
+        <h2 className="text-lg font-semibold">Comments Here</h2>
       </div>
 
       {/* Input Box */}

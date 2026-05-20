@@ -2,10 +2,11 @@
 
 import { useState } from "react";
 import { Button, Input, Label, Modal, Surface, TextField } from "@heroui/react";
-
+import { useRouter } from "next/navigation";
+import toast from "react-hot-toast";
 export default function EditComment({ id, oldPost }) {
   const [post, setPost] = useState(oldPost || "");
-
+ const router = useRouter();
   const handleUpdate = async () => {
     const res = await fetch(`http://localhost:5000/comment/${id}`, {
       method: "PATCH",
@@ -16,7 +17,10 @@ export default function EditComment({ id, oldPost }) {
     });
 
     const data = await res.json();
-    console.log(data);
+    if(data){
+      toast.success("Comment Edit Successfull")
+       router.refresh();
+    }
   };
 
   return (

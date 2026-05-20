@@ -1,6 +1,7 @@
 "use client";
-
+import 'animate.css';
 import { authClient } from "@/lib/auth-client";
+
 import {
   Button,
   Description,
@@ -35,7 +36,7 @@ export default function SignupPage() {
   };
 
   return (
-    <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-slate-50 to-slate-200 dark:from-black dark:to-slate-900 px-4">
+    <div className="mt-5 animate__animated animate__backInUp min-h-screen flex items-center justify-center bg-gradient-to-br from-slate-50 to-slate-200 dark:from-black dark:to-slate-900 px-4">
       
       <div className="w-full max-w-md rounded-2xl bg-white/80 dark:bg-white/5 backdrop-blur-xl shadow-xl border border-gray-200 dark:border-white/10 p-8">
         
@@ -56,7 +57,7 @@ export default function SignupPage() {
             <Label className="text-sm font-medium">Name</Label>
             <Input
               placeholder="Enter your name"
-              className="h-11 rounded-lg"
+              className="h-11 w-full rounded-lg"
             />
             <FieldError />
           </TextField>
@@ -76,7 +77,7 @@ export default function SignupPage() {
             <Label className="text-sm font-medium">Email</Label>
             <Input
               placeholder="Enter your email"
-              className="h-11 rounded-lg"
+              className="h-11 w-full rounded-lg"
             />
             <FieldError />
           </TextField>
@@ -86,7 +87,7 @@ export default function SignupPage() {
             <Label className="text-sm font-medium">Image URL</Label>
             <Input
               placeholder="https://example.com/image.jpg"
-              className="h-11 rounded-lg"
+              className="h-11 w-full rounded-lg"
             />
             <Description>Profile image link</Description>
             <FieldError />
@@ -113,7 +114,7 @@ export default function SignupPage() {
             <Label className="text-sm font-medium">Password</Label>
             <Input
               placeholder="Enter your password"
-              className="h-11 rounded-lg"
+              className="h-11 w-full rounded-lg"
             />
             <Description>
               At least 6 chars, 1 uppercase, 1 number

@@ -4,7 +4,7 @@ import useEmblaCarousel from "embla-carousel-react";
 import Autoplay from "embla-carousel-autoplay";
 import { GrNext, GrPrevious } from "react-icons/gr";
 import Link from "next/link";
-
+import 'animate.css';
 export default function Carousel() {
   const [emblaRef, emblaApi] = useEmblaCarousel(
     { loop: true },
@@ -61,7 +61,7 @@ export default function Carousel() {
   };
 
   return (
-    <div className="mt-15 relative overflow-hidden py-5 w-full mx-auto">
+    <div className="mt-15 relative overflow-hidden py-5 w-full mx-auto animate__animated animate__backInUp">
       {/* Carousel */}
       <div className="overflow-hidden rounded-xl" ref={emblaRef}>
         <div className="flex">

@@ -1,6 +1,6 @@
 "use client";
-
-
+import toast from "react-hot-toast";
+import 'animate.css';
 import { authClient } from "@/lib/auth-client";
 import {
   Button,
@@ -25,13 +25,23 @@ export default function LoginPage() {
     rememberMe: true,
     callbackURL: "http://localhost:3000/",
 });
+  if (error) {
+      toast.error(error.message || "Login failed");
+      return;
+    }
+
+   
+    if (data) {
+      toast.success("Login successful");
+    }
     } catch (err) {
         console.error("error ",err)
+        toast.error("Something went wrong!");
     }
   };
 
   return (
-    <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-slate-50 to-slate-200 dark:from-black dark:to-slate-900 px-4">
+    <div className="animate__animated animate__backInUp min-h-screen flex items-center justify-center bg-gradient-to-br from-slate-50 to-slate-200 dark:from-black dark:to-slate-900 px-4">
       
       <div className="w-full max-w-md rounded-2xl bg-white/80 dark:bg-white/5 backdrop-blur-xl shadow-xl border border-gray-200 dark:border-white/10 p-8">
         
@@ -45,7 +55,7 @@ export default function LoginPage() {
           </p>
         </div>
 
-        <Form className="flex flex-col gap-5" onSubmit={onSubmit}>
+        <Form className="flex  flex-col gap-5" onSubmit={onSubmit}>
           
           {/* Email */}
           <TextField
@@ -64,7 +74,7 @@ export default function LoginPage() {
             <Label className="text-sm font-medium">Email</Label>
             <Input
               placeholder="Enter your Email"
-              className="h-11 rounded-lg"
+              className="h-11 w-full rounded-lg"
             />
             <FieldError />
           </TextField>
@@ -91,7 +101,7 @@ export default function LoginPage() {
             <Label className="text-sm font-medium">Password</Label>
             <Input
               placeholder="Enter your password"
-              className="h-11 rounded-lg"
+              className="h-11 w-full rounded-lg"
             />
             <Description>Must be at least 6 characters with 1 uppercase and 1 number</Description>
             <FieldError />

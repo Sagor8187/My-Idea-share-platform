@@ -4,6 +4,7 @@ import { auth } from "@/lib/auth";
 import { headers } from "next/headers";
 import Link from "next/link";
 import { FaUserCircle } from "react-icons/fa";
+import 'animate.css';
 
 export default async function MyIdeaPage() {
   const session = await auth.api.getSession({
@@ -11,12 +12,12 @@ export default async function MyIdeaPage() {
   });
   const res = await fetch(`http://localhost:5000/my-idea/${session?.user?.id}`);
   const ideas = await res.json();
-  console.log(ideas);
+  
 
   return (
     <div>
-      <div>
-        <div className="mt-15 container mx-auto px-4 py-8">
+      {ideas.length > 0?<div>
+        <div className="animate__animated animate__slideInUp mt-15 container mx-auto px-4 py-8">
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 justify-center">
             {ideas.map((item) => (
               <div
@@ -88,7 +89,9 @@ export default async function MyIdeaPage() {
             ))}
           </div>
         </div>
-      </div>
+      </div>:<div>
+        <h1 className="text-2xl text-center mx-auto mt-20">No Idea post In Add Idea so Not Available in Page Idea</h1>
+        </div>}
     </div>
   );
 }

@@ -1,7 +1,7 @@
 import { FaUserCircle } from "react-icons/fa";
 import Comment from "@/component/Comment";
 import CommentList from "@/component/CommentList";
-
+import 'animate.css';
 export default async function DetailsPage({ params }) {
   const { id } = await params;
 
@@ -12,7 +12,7 @@ export default async function DetailsPage({ params }) {
   const data = await res.json();
 
   return (
-    <div>
+    <div className="animate__animated animate__slideInLeft">
 <main className="mt-15 min-h-screen bg-background text-foreground py-10 px-4 sm:px-6 lg:px-8">
       
       <div className="max-w-3xl mx-auto bg-content1 rounded-2xl shadow-xl overflow-hidden  border-divider">

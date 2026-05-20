@@ -3,7 +3,7 @@
 import { useState } from "react";
 import Link from "next/link";
 import { FaUserCircle } from "react-icons/fa";
-
+import 'animate.css';
 export default function IdeaClient({ initialData }) {
   const [ideas, setIdeas] = useState(initialData);
 
@@ -25,7 +25,7 @@ export default function IdeaClient({ initialData }) {
 
  
   return (
-    <div className="mt-15 container mx-auto px-4 py-8">
+    <div className="animate__animated animate__zoomIn mt-15 container mx-auto px-4 py-8">
 
       {/* 🔍 SEARCH UI */}
       <div className="flex gap-3 mb-6">

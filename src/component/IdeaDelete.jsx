@@ -1,8 +1,10 @@
 "use client"
 
 import {AlertDialog, Button} from "@heroui/react";
+import { useRouter } from "next/navigation";
+import toast from "react-hot-toast";
 export default function IdeaDelete({item}) {
- 
+  const router = useRouter();
 const deleteIdea = async () => {
 
   const res = await fetch(
@@ -13,8 +15,11 @@ const deleteIdea = async () => {
   );
 
   const data = await res.json();
-
-  console.log(data);
+if(data){
+  toast.success('Idea Deleted Successfully')
+       router.refresh();
+}
+  
 };
     
   return (

@@ -4,14 +4,19 @@ import { FaRegComment, FaHeart, FaReply } from "react-icons/fa";
 import { FaUserCircle } from "react-icons/fa";
 import DeletePost from "./DeletePost";
 import EditComment from "./EditComment";
+import 'animate.css';
 export default async function CommentList({id}) {
     const mycomment = await fetch(`http://localhost:5000/comment/${id}`)
     const output =await mycomment.json()
 
   return (
     <div>
+
+    <h2 className="p-3 font-bold">Your Comment ({output?output.length:0})</h2>
+    {output.length > 0 ?
+      <div>
         {output.map(item=>
-             <div key={item._id} className="px-4 pb-4 space-y-3">
+             <div key={item._id} className="animate__animated animate__slideInUp px-4 pb-4 space-y-3">
         {/* Comment Card */}
         <div
           className="flex gap-3 p-4 rounded-xl my-2
@@ -66,5 +71,9 @@ export default async function CommentList({id}) {
         )}
        
     </div>
+      :<div>
+      <h1 className="p-3 text-center">No Comment in post</h1>
+      </div>}
+      </div>
   )
 }

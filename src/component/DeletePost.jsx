@@ -1,13 +1,20 @@
 "use client"
 import { Button } from "@heroui/react";
+import { useRouter } from "next/navigation";
+import toast from "react-hot-toast";
 export default function DeletePost({id}) {
+     const router = useRouter();
     const deletepost =async ()=>{
 
 const res = await fetch(`http://localhost:5000/comment/${id}`,{
     method:"DELETE"
 })
 const output =await res.json()
-console.log(output)
+
+if(output){
+    toast.success('Comment Delete Successful')
+       router.refresh();
+}
     }
     
   return (

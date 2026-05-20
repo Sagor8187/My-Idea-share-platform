@@ -3,7 +3,8 @@ import { usePathname } from "next/navigation";
 import { ThemeSwitch } from "./ThemeSwitch";
 import Link from "next/link";
 import { authClient } from "../lib/auth-client";
-
+import 'animate.css';
+import toast from "react-hot-toast";
 export default function Navber() {
   const pathname = usePathname();
   
@@ -11,10 +12,11 @@ export default function Navber() {
   
    const handlesignout = async ()=>{
     await authClient.signOut();
+    toast.success("Logout successful");
   }
   
   return (
-    <div  className="fixed top-0 left-0 w-full z-50 bg-background/70 backdrop-blur-md shadow border-divider">
+    <div  className="animate__animated animate__flipInX fixed top-0 left-0 w-full z-50 bg-background/70 backdrop-blur-md shadow border-divider">
       <div className="navbar shadow-sm">
         <div className="navbar-start">
           <div className="dropdown">
@@ -195,9 +197,9 @@ export default function Navber() {
     className="menu menu-sm dropdown-content bg-white dark:bg-base-100 text-black dark:text-base-content rounded-box z-50 mt-3 w-52 p-2 shadow-lg"
   >
     <li>
-      <a className="justify-between">
-        Profile <span className="badge">New</span>
-      </a>
+     
+        <Link className="justify-between" href="/profile">Profile</Link>
+     
     </li>
 
     <li>

@@ -1,6 +1,8 @@
 "use client";
 import { FloppyDisk } from "@gravity-ui/icons";
 import {Button, Input, Label, Modal, Surface, TextField} from "@heroui/react";
+import { useRouter } from "next/navigation";
+import toast from "react-hot-toast";
 import {
   
   Description,
@@ -18,6 +20,8 @@ import {
 
 
 export default function IdeaUpdate({item}) {
+  const router = useRouter();
+
 
 const onSubmit = async (e) => {
   e.preventDefault();
@@ -54,7 +58,10 @@ createdAt:new Date().toISOString()
 
   const output = await res.json();
 
-  console.log(output);
+  if(output){
+    toast.success('Add your Comment')
+       router.refresh();
+  }
 };
 
 

@@ -2,6 +2,8 @@
 
 import { authClient } from "@/lib/auth-client";
 import { FloppyDisk } from "@gravity-ui/icons";
+import toast from "react-hot-toast";
+import 'animate.css';
 import {
   Button,
   Description,
@@ -51,7 +53,10 @@ export default function AddIdea() {
       body: JSON.stringify(data),
     });
     const output = await res.json();
-    console.log(output);
+    if(output){
+      toast.success('Your Idea Added Successfull')
+       
+    }
   };
 
   const categories = [
@@ -74,7 +79,7 @@ export default function AddIdea() {
   };
 
   return (
-    <div className="min-h-screen bg-background text-foreground py-12 px-4 sm:px-6 lg:px-8 flex justify-center items-center">
+    <div className="animate__animated animate__slideInLeft min-h-screen bg-background text-foreground py-12 px-4 sm:px-6 lg:px-8 flex justify-center items-center">
       <Form
         className="w-full max-w-3xl bg-content1 p-6 sm:p-10 rounded-2xl shadow-xl "
         onSubmit={onSubmit}

@@ -2,7 +2,7 @@ import { auth } from "@/lib/auth";
 import { headers } from "next/headers";
 import { FaRegComment, FaHeart, FaReply } from "react-icons/fa";
 import { FaUserCircle } from "react-icons/fa";
-
+import 'animate.css';
 export default async function MyInteractionPage() {
     const session = await auth.api.getSession({
       headers: await headers(),
@@ -12,11 +12,11 @@ export default async function MyInteractionPage() {
     const output = await res.json()
     
   return (
-    <div className="mt-18 space-y-4 ">
+    <div className="mt-18 space-y-4 animate__animated animate__slideInUp">
       <h1 className="font-bold text-xl px-6">Comment({output.length}) </h1>
       <hr className="mx-6" />
 <div>
-        {output.map(item=>
+       {output.length>0?<div>{output.map(item=>
              <div key={item._id} className="px-4 pb-4 space-y-3">
         {/* Comment Card */}
         <div
@@ -64,7 +64,9 @@ export default async function MyInteractionPage() {
 
       
       </div>
-        )}
+        )}</div> :<div>
+          <h1 className="text-2xl mx-auto mt-20">No Comment In post </h1>
+          </div>}
        
     </div>
     </div>
