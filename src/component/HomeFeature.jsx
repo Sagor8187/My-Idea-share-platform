@@ -2,7 +2,7 @@ import Link from "next/link";
 import { FaUserCircle } from "react-icons/fa";
 
 export default async function HomeFeature() {
-  const res = await fetch("http://localhost:5000/home-idea", {
+  const res = await fetch(`${process.env.MY_PUBLIC_NEXT_URL}/home-idea`, {
     cache: "no-store",
   });
 
