@@ -18,6 +18,7 @@ import {
   TextField,
   Select,
   ListBox,
+  
 } from "@heroui/react";
 
 export default function AddIdea() {
@@ -47,7 +48,8 @@ export default function AddIdea() {
       problemStatement: mydata.problemStatement,
       proposedSolution: mydata.proposedSolution,
     };
-
+   
+  
     const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/idea`, {
       method: "POST",
       headers: {
@@ -148,7 +150,7 @@ export default function AddIdea() {
                   <Select.Popover>
                     <ListBox>
                       {categories.map((cat) => (
-                        <ListBox.Item key={cat.key} textValue={cat.label}>
+                        <ListBox.Item id={cat.key} key={cat.key} textValue={cat.label}>
                           {cat.label}
                         </ListBox.Item>
                       ))}
